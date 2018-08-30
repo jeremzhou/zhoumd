@@ -1,0 +1,39 @@
+#spring boot properties
+#http://docs.spring.io/spring-boot/docs/1.5.4.RELEASE/reference/htmlsingle/#common-application-properties
+
+#spring cloud properties
+#http://cloud.spring.io/spring-cloud-static/Dalston.SR1/#_appendix_compendium_of_configuration_properties
+
+# IDENTITY (ContextIdApplicationContextInitializer)
+spring:
+  application:
+    name: md5verify
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    tomcat:
+      initialSize: 2
+      min-idle: 1
+      max-active: 5
+  jpa:
+    database: ORACLE
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.Oracle12cDialect
+        format_sql: true
+        order_inserts: true
+        order_updates : true
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        jdbc:
+          batch_size: 10000
+
+# MANAGEMENT HTTP SERVER (ManagementServerProperties)
+management:
+  security:
+    # false security.
+    enabled: false
+    
+uapollo.env: DEV  

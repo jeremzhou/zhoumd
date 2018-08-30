@@ -1,0 +1,36 @@
+#spring boot properties
+#http://docs.spring.io/spring-boot/docs/1.5.8.RELEASE/reference/htmlsingle/#common-application-properties
+
+# EMBEDDED SERVER CONFIGURATION (ServerProperties)
+server:
+  # Network address to which the server should bind to.
+  address: 127.0.0.1
+  # Server HTTP port.
+  port: 9797
+
+# SPRING BOOT CONFIG CONFIGURATION
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@10.50.13.199:1521:orcl
+    username: wacos
+    password: oss
+
+# md5verify配置
+vmsadapter:
+  md5verify:
+    #0：无需审核， 1：编目未完成，2：根据VSP
+    auditflag: 1
+    task:    
+      #MD5验证时间间隔。单位：分钟
+      interval: 10
+      #定时检查频率
+      cronexpression: 0 0/5 * * * ?
+      #MD5 program 校验次数
+      count: 3
+    request:
+      #MD5校验url
+      url: http://127.0.0.1:9797/md5verify
+      #等待服务器返回结果超时时间。单位：秒
+      timeout: 180
+      #并发请求数
+      threads: 8

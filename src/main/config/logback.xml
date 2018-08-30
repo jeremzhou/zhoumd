@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true" scanPeriod="600 seconds" debug="false">
+
+	<property name="log_dir" value="logs" />
+	<property name="maxHistory" value="720" /><!-- unit: hour -->
+
+	<!-- LEVEL: ERROR -->
+	<appender name="logError"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log_dir}/md5verify_error.log</file>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log_dir}/md5verify_error.log.%d{yyyy-MM-dd-HH}.%i
+			</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%t] [%c] - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- LEVEL: WARN -->
+	<appender name="logWarn"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log_dir}/md5verify_warn.log</file>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>WARN</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log_dir}/md5verify_warn.log.%d{yyyy-MM-dd-HH}.%i
+			</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%t] [%c] - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- LEVEL: INFO -->
+	<appender name="logInfo"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log_dir}/md5verify.log</file>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>INFO</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log_dir}/md5verify.log.%d{yyyy-MM-dd-HH}.%i
+			</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- LEVEL: DEBUG -->
+	<appender name="logDebug"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log_dir}/md5verify_debug.log</file>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>DEBUG</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log_dir}/md5verify_debug.log.%d{yyyy-MM-dd-HH}.%i
+			</fileNamePattern>
+			<maxHistory>${maxHistory}</maxHistory>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%t] [%c] - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- package: org.eclipse.jetty -->
+	<logger name="org.eclipse.jetty" level="WARN" />
+
+	<!-- package: cn.utstarcom.vmsadapter.md5verify -->
+	<logger name="cn.utstarcom.vmsadapter.md5verify" level="INFO" />
+
+	<!-- package: org.springframework -->
+	<logger name="org.springframework" level="INFO" />
+	
+	<!-- package: org.jboss -->
+    <logger name="org.jboss" level="INFO" />
+    
+    <!-- package: org.hibernate -->
+    <logger name="org.hibernate" level="INFO" />
+    
+    <!-- package: org.eclipse -->
+    <logger name="org.eclipse" level="INFO" />
+
+	<!-- root -->
+	<root level="DEBUG">
+		<appender-ref ref="logError" />
+		<appender-ref ref="logWarn" />
+		<appender-ref ref="logInfo" />
+		<appender-ref ref="logDebug" />
+	</root>
+
+</configuration> 
